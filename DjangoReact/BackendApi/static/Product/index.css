@@ -1,0 +1,222 @@
+body{
+    width: auto;
+    display: flex;
+    justify-content: center;
+    background-color: #060002;
+}
+.main-block{
+    display: block;
+    position: relative;
+    width: 1400px;
+    min-width: auto;
+    height: auto;
+    min-height: 800px;
+    flex-wrap: wrap;
+}
+.header{
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 62px;
+    border-bottom: #ebebeb 2px solid;
+}
+.header-block{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 120px;
+    flex-wrap: wrap;
+    overflow: hidden;
+    justify-content: center;
+}
+.header-block-container{
+    position: fixed;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 60px;
+    top:0;
+    left: 0;
+    background-color: #060002;
+    z-index: 99;
+}
+.header-block-main{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1400px;
+    min-width: auto;
+    height: 60px;
+    background-color: #060002;
+}
+.header-block-search{
+    display: flex;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    justify-content: center;
+    width: 100%;
+    min-width: auto;
+    height: 58px;
+    border-top: 2px solid #ebebeb;
+    align-items: center;
+}
+.site-name{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 40px;
+    font-weight: bolder;
+    color: white;
+    margin: 3px 0px;
+}
+ 
+.block-promo{
+    display: flex;
+    position: relative;
+    width: 100%;
+    min-width: 360px;
+    height: 680px;
+    border-left: solid 2px transparent;
+    border-image: linear-gradient(#ebebeb, #111010);
+    -moz-border-image: -moz-linear-gradient(#ebebeb, #111010);
+    -webkit-border-image: -webkit-linear-gradient(#ebebeb, #111010);
+    border-image-slice: 1;
+}
+.block-line{
+    display: block;
+    width: 8.5%;
+    height: 100%;
+    border-right: solid 2px transparent;
+    border-image: linear-gradient(#ebebeb, #111010);
+    -moz-border-image: -moz-linear-gradient(#ebebeb, #111010);
+    -webkit-border-image: -webkit-linear-gradient(#ebebeb, #111010);
+    border-image-slice: 1;
+}
+
+
+.footer{
+    position: absolute;
+    display: flex;
+    height: 70px;
+    width: 100%;
+    min-height: auto;
+    bottom: 0;
+    left: 0;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid #ebebeb;
+    z-index: 99;
+    background-color: #060002;
+}
+.register-block{
+    position: absolute;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 500px;
+    flex-wrap: wrap;
+}
+.reg-name{
+    display: flex;
+    width: 100%;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+}
+.register-form-block{
+    display: flex;
+    width: 500px;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 25px;
+    margin: auto;
+}
+.form{
+    display: block;
+    width: 350px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: auto;
+    min-height: 200px;
+}
+.register-input{
+    display: flex;
+    margin-bottom: 15px;
+    border-bottom: 2px solid black;
+    height: auto;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    overflow: hidden;
+}
+.register-input input{
+    width: 250px;
+    outline: none;
+    border: none;
+    color: #000000;
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.register-agree{
+    display: flex;
+    width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -15px;
+    min-width: 250px;
+}
+.check{
+    display: flex;
+    width: 40px;
+    align-items: center;
+}
+.check input{
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    background: #060002;
+    color: #060002;
+}
+.text-agree{
+    width: 210px;
+}
+.text-agree p{
+    color: #060002;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 15px;
+}
+.register-button{
+    width: 100%;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #060002;
+    font-size: 25px;
+    border: none;
+    color: #ebebeb;
+    transition: all 0.5s ease;
+}
+.register-button:hover{
+    background: #353334;
+}
+.go-to-titel{
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-left: 30px;
+    margin-top: 30px;
+    font-size: 50px;
+    color: #ebebeb;
+}
+.arrow-back{
+    list-style: none;
+    text-decoration: none;
+    transition: all 0.5s ease;
+    color: #ebebeb;
+}
+.arrow-back:hover{
+    color:#6456BF ;
+}

@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-8s0h7cvm^y^s7yhka9n4i1muh$z*e=xsa^s#(9!19v&m8w*fvf
 DEBUG = True
 
 ALLOWED_HOSTS = []
-USER_SESSION = 'activeUser'
-
+USER_SESSION = 'activeUser' 
+USER = 'user_id'
 
 # Application definition
 
@@ -110,6 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'Product.CustomUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

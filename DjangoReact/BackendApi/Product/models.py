@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractUser, Group, Permission
 
 # Create your models here.
 class ModelProduct(models.Model):
@@ -50,3 +50,14 @@ class Users(models.Model):
         verbose_name = "User"
         verbose_name_plural = "Users"
     
+class CustomUser(AbstractUser):
+    phone = models.CharField('phone', max_length = 12 )
+    user_img = models.ImageField(upload_to='images/', blank=True, null = True,  default='default.png')
+    
+    
+    groups = models.ManyToManyField(Group, related_name='customuser_groups')  
+    user_permissions = models.ManyToManyField(Permission, related_name='customuser_permissions')  
+
+    class Meta:
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'

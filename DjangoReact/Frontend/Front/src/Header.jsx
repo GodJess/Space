@@ -9,11 +9,11 @@ const Header = ({setOpen})=>{
 
     useEffect(()=>{
         const fetchUser = async ()=>{
-            const {data} = await axios.get('http://127.0.0.1:8000/avtorizations/');
+            const {data} = await axios.get('http://127.0.0.1:8000/auth/');
             setActiveUser(data);
         }
         fetchUser();
-    }, {})
+    }, [])
     return(
         <div className="header">
             <div className="header-block">
@@ -30,7 +30,7 @@ const Header = ({setOpen})=>{
                                 <li className="links"><a href="#">Put up</a></li>
                                 <li className="links"><a href="#">Mortgage</a></li>
                                 <li className="links"><a href="#">Favorites</a></li>
-                                <li className="links"><Link className='linkk' to='/auth/'>{activeUser.name}</Link> <img src={activeUser.image} alt=""/></li>
+                                <li className="links"><a href="http://127.0.0.1:8000/#" className='linkk' to='/auth/'>{activeUser.name}</a> <img src={activeUser.image} alt=""/></li>
                             </ul>
                         </div>
                         <h1 className="site-name end">Space</h1>

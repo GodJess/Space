@@ -126,7 +126,7 @@ const createUser = ()=>{
                         </div>
                         <button type='button' className="register-button" onClick={createUser}>Sing Up</button>
                         <div className="link-to-login">
-                            <p>Do you have an account?<Link to='/auth/'>Login In</Link></p>
+                            <p>Do you have an account?<a href="http://127.0.0.1:8000/#">Login In</a></p>
                             <p className='error'>{error.sucsess}</p>
                         </div>
                     </form>

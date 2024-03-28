@@ -1,16 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_200_OK
-from .models import ModelProduct, ModelRooms, Users
-from .serializers import ProductSerializers, RoomsSerializers, RoomsSerializer
+from .models import ModelProduct, ModelRooms, CustomUser
+from .serializers import ProductSerializers, RoomsSerializers, UserSerializer
 from django.conf import settings
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 
 
-
-# Create your views here.
+# Create your views here.= 
 def home(request):
-    return render(request, 'home.html')
+    
+    return render(request, 'home.html', {})
 
 @api_view(['GET', 'POST'])
 def product(request):
@@ -34,61 +37,46 @@ def room(request, pk):
         serializers = RoomsSerializers(room, many = False, context={'request': request})
         return Response(serializers.data)
     
-
-@api_view(['GET','POST'])   
-def avtorizations(request):
-    if request.method == 'POST':
-        activeUser = request.session.get(settings.USER_SESSION, {})
-        activeUser = []
-        if len(activeUser) > 0:
-             request.session.pop(settings.USER_SESSION, None)
-             
-        numberphone = request.data.get('phone')
-        userpassword = request.data.get('password')
-        print(numberphone)
-        print(userpassword)
-        user = Users.objects.filter(phone = numberphone, password = userpassword).first()
-        if user:
-            activeUser.append({
-                'Name': user.name, 'Surname': user.surname, 'phone': user.phone, 'Mail': user.mail, 'password': user.password, 'Image': user.user_img.url
-            })
-            request.session[settings.USER_SESSION] = activeUser
-            
-            for el in activeUser:
-                print(el['Name'], el['Surname'], el['phone'], el['Mail'])
-            # return HTTP_200_OK
-            return Response({'message': 'User successfully authenticated'}, status=200)
-        
-        else:
-            # return HTTP_400_BAD_REQUEST
-            return Response({'error': 'User not found or authentication failed'}, status=400)
-            
+@api_view(['GET'])
+def auth(request):
     if request.method == 'GET':
-        check(request)
-        activeUser = request.session.get(settings.USER_SESSION, {})
-        print(len(activeUser))
-        data = { 'name': 'User', 
-            'surname' : '', 
-            'phone': '', 
-            'mail': '', 
-            'password': '', 
-            'image': 'https://icon-icons.com/icons2/827/PNG/512/user_icon-icons.com_66546.png',
-            'length' : len(activeUser)
-            
-        }
-        for el in activeUser:
-            print(el['Name'], el['Surname'], el['phone'], el['Mail'])
-            data['name'] = el['Name']
-            data['surname'] = el['Surname']
-            data['phone'] = el['phone']
-            data['mail'] = el['Mail']
-            data['password'] = el['password']
-            data['image'] = el['Image']
+        data = { 
+                'id': None,
+                'name': 'User', 
+                'phone': '', 
+                'mail': '', 
+                'image': 'https://icon-icons.com/icons2/827/PNG/512/user_icon-icons.com_66546.png'
+            }
+        if request.user.is_authenticated:
+            user = request.user
+            print(user.username, user.email, user.phone)
+            data['id'] = user.id
+            data['name'] = user.username
+            data['phone'] = user.phone
+            data['mail'] = user.email
+            data['image'] = 'http://127.0.0.1:8000/media/images/' + str(user.user_img)
+           
         return Response(data)
+
+@api_view(['POST'])
+def avtorizations(request):
+    numberphone = request.POST.get('phone')
+    userpassword = request.POST.get('password')
+    print(numberphone, userpassword)
     
-def check(request):
-    activeUser = request.session.get(settings.USER_SESSION, {})
-    print(len(activeUser))
+    user = CustomUser.objects.filter(phone = numberphone).first()
+    if user is not None:
+        authenticated_user = authenticate(request, username = user.username, password = userpassword)
+        if authenticated_user is not None:
+            login(request, authenticated_user)
+            print("Успешно авторизован")
+            return Response({'message': 1}, status=200)
+        else: 
+            return Response({'message': 0}, status=400)
+    return Response({'message': 0}, status=400)
+    
+
+
 
 @api_view(['POST'])
 def registrations(request):
@@ -100,7 +88,7 @@ def registrations(request):
         password =request.data.get('password')
         repassword = request.data.get('repassword')
         
-        users = Users.objects.filter(phone = phone).first()
+        users = CustomUser.objects.filter(phone = phone).first()
         print(name)
         print(surname)
         
@@ -115,7 +103,8 @@ def registrations(request):
             if len(str(phone)) == 11:
                 if len(str(password)) >= 8:
                     if password == repassword:
-                        user = Users(name = name, surname = surname, phone = phone, mail=mail, password = password)
+                        user = CustomUser.objects.create_user(username=name, password=password, email = mail, phone=phone)
+                        # user.is_staff = False
                         user.save()
                         data['sucsess'] = 'Пользователь успешно создан'
                         print(data['sucsess'] )

@@ -13,11 +13,11 @@ const Titul = ()=>{
 
     useEffect(()=>{
         const fetchUser = async ()=>{
-            const {data} = await axios.get('http://127.0.0.1:8000/avtorizations/');
+            const {data} = await axios.get('http://127.0.0.1:8000/auth/');
             setActiveUser(data);
         }
         fetchUser();
-    }, {})
+    }, [])
 
     const delOpen = ()=>{
         setOpen(false);
@@ -46,7 +46,7 @@ const Titul = ()=>{
                                 <li className="links"><a href="#">Mortgage</a></li>
                                 <li className="links"><a href="#">Favorites</a></li>
                                 <li className="links">
-                                    <Link className='linkk' to='/auth/'>{activeUser.name}</Link> 
+                                    <a className='linkk' href='http://127.0.0.1:8000/#'>{activeUser.name}</a> 
                                     <img src={activeUser.image} alt=""/>
                                 </li>
                             </ul>

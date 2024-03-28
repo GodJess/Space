@@ -8,11 +8,12 @@ const Menu = ({delOpen})=>{
 
     useEffect(()=>{
         const fetchUser = async ()=>{
-            const {data} = await axios.get('http://127.0.0.1:8000/avtorizations/');
+            const {data} = await axios.get('http://127.0.0.1:8000/auth/');
             setActiveUser(data);
         }
         fetchUser();
-    }, {})
+    }, [])
+    
     return(
     <div className="block-popup-menu">
         <div className="popup-header">
@@ -36,7 +37,7 @@ const Menu = ({delOpen})=>{
             <a className="a" href="#">Favorites</a>
         </div>
         <div className="options">
-            <Link className='a' to='/auth/'>{activeUser.name}</Link>
+            <a className='a' href='http://127.0.0.1:8000/#'>{activeUser.name}</a>
             <img  src={activeUser.image} alt=""/>
         </div>
     </div>

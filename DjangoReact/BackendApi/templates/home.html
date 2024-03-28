@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Product/index.css'%}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-block">
+        
+        <div class="header">
+            <div class="header-block">
+                <div class="header-block-container">
+                    <div class="header-block-main">
+                        <h1 class="site-name start">Space</h1>
+
+                        <h1 class="site-name end">Space</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="block-promo">
+            <div class="block-line"></div>
+            <div class="block-line"></div>
+            <div class="block-line"></div>
+            <div class="block-line"></div>
+            <div class="block-line"></div>
+            <div class="block-line"></div>
+            <div class="block-line f "></div>
+            <div class="block-line f "></div>
+            <div class="block-line f d"></div>
+            <div class="block-line f d"></div>
+            <div class="block-line f d"></div>
+            <div class="block-line f d"></div>
+            <div class="register-block">
+                <div class="reg-name"><h1 class="site-name">Log in</h1></div>
+                <div class="register-form-block">
+                    <form action="{% url 'avtoriz'%}" method='post' class="form">
+                      {% csrf_token %}
+                        <div class="register-input">
+                            <input type="text" placeholder="Mobile Phone" name='phone'>
+                        </div>
+                        <div class="register-input">
+                            <input type="password" placeholder="Password" name="password">
+                        </div>
+                        <div class="register-agree">
+                            <div class="check">
+                                <input type="checkbox" name="" id="">
+                            </div>
+                            <div class="text-agree">
+                                <p>I have read and agree to Space Conditions and Privacy Police</p>
+                            </div>
+                        </div>
+                        <button class="register-button">Log in</button>
+                        <div class="link-to-login">
+                            <p>Do you have an account?<a href='http://localhost:5173/register/'>Sing up</a></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="go-to-titel">
+                    <a class="arrow-back" href="http://localhost:5173/"><ion-icon name="arrow-back-outline"></ion-icon></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <h1 class="site-name ">Space</h1> 
+            <h1 class="site-name">Space</h1>
+        </div>
+    </div>
+    <script  type = "module"  src = "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" ></script> 
+    <script  nomodule  src = "https://unpkg .com/ionicons@7.1.0/dist/ionicons/ionicons.js" ></script>
+</body>
+</html>
